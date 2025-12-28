@@ -1,0 +1,613 @@
+<html>
+    <head><title></title>
+    <meta charset="utf-8">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/flexslider.min.css">   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/jquery.flexslider-min.js"></script>
+    
+
+        
+    <script>//flex 輪播圖片
+        $(window).on('load', function(){
+            $('.flexslider').flexslider({
+                animation: "slide",
+                slideshowSpeed: 4000,
+                animationSpeed: 600
+            });
+        });
+    </script>
+
+
+    
+    <script>
+        //任務新增區塊
+        //代表按鈕被選中
+        $(document).ready(function(){
+        $('.task-category button').click(function(){
+            // 先移除同區塊其他按鈕的選中
+            $(this).siblings().removeClass('selected');
+            // 再加上自己
+            $(this).addClass('selected');
+        });
+        });
+    </script>
+    
+    <script>
+    //佈告欄
+    $(document).ready(function(){
+    $('.task-tabs li').click(function(){
+        // 先把所有標籤取消 active
+        $('.task-tabs li').removeClass('active');
+        $(this).addClass('active');
+
+        // 切換內容
+        var tabId = $(this).data('tab');
+        $('.tab-content').removeClass('active');
+        $('#' + tabId).addClass('active');
+    });
+});
+
+    </script>
+    <style>
+										
+        /*全區域設定*/
+        *{
+            margin:0;
+            /*color:#ffffff;*/
+        }
+        /*  */
+										/* 最上方標題 */
+        .top{
+            color: white;
+            background: linear-gradient( #222122,#391459);        }
+        /* 右邊區塊 */
+        .top .container{
+            display: flex;/* block,grid */
+            align-items: center;/* flex-start → 頂部對齊，flex-end → 底部對齊，center → 中間對齊，stretch → 拉伸填滿容器（預設），baseline → 按文字基線對齊 */
+            justify-content: space-between;/* flex-start → 靠左對齊，flex-end → 靠右對齊，center → 水平居中，space-between → 首尾貼邊，中間均分空間，space-around → 每個項目周圍留相等空間，space-evenly → 所有間距相等，包括首尾 */
+            padding:10px;/* 留白 */
+        }
+        /* 明新科技大學的logo區塊 */
+        .top .logo{
+            /*border:1px solid red;*/
+            font-size: 25px;
+            font-weight: bold;
+            
+        }
+        /* 明新科技大學的logo區塊 */
+        .top .logo img{
+            width: 100px;/*寬度*/
+            vertical-align: middle;/*圖文並排*/
+        }
+        /*  右邊區塊內部 */
+        .top .top-nav{
+            
+            /*border:1px solid red;*/
+            font-size: 18px;
+            font-weight: bold;/*粗體*/
+                   
+        }
+        /* 右邊區塊內文字*/
+        .top .top-nav a{
+            color: white;
+            text-decoration: underline;/*下底線*/
+        }
+										/* 功能選單區塊 */
+        .nav {
+            background: linear-gradient( #391459, #8a5caa);
+
+            display: flex;
+            justify-content: flex-end;/*垂直置中*/
+
+        }
+        /* 功能選單內部*/
+        .nav ul {
+            list-style-type: none;  
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden;
+        }
+        /* 功能選單內部列表*/
+        .nav li {
+            float: left;            
+        }
+        /* list內的文字*/
+        .nav li a {    
+            display: block;  
+            color: white;  
+            text-align: left;  
+            padding: 14px 16px;  
+            text-decoration: none;  
+        }
+        /*list被滑鼠滑過時的顏色*/
+        .nav li a:hover {
+            background: #bdb39d;
+            color:rgb(84, 13, 13); 
+        }
+        /*下拉式選單內容*/
+        .dropdown:hover .dropdown-content {
+            
+            display: block;   /*使用block呈現上下排列*/            
+        }
+        /*下拉式選單被使用中的顏色*/
+        li.dropdown:hover{
+             background:  #391459}
+        .dropdown-content {  
+            display: none;
+            position: absolute;
+             background: linear-gradient( #391459, rgb(84, 13, 13));        
+            min-width: 160px;
+            z-index: 1;
+        }
+        /*設定下拉選單連結內容格式*/
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        /* 圖片輪播 */
+        
+        .flexslider-area{
+
+            background: linear-gradient( #391459, #8a5caa);
+            width: 100%;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            padding-bottom:20px ;
+        }
+        
+        .flexslider{
+            
+            width: 100%;
+            max-width: none;   /* (寬度最高上限)可依版型調(這裡取消上限) */
+            margin: 0 auto;     /* 置中 */
+            height: 400px;
+             background: radial-gradient(circle at top, #2b1055, #000);
+        }
+        .flexslider .slides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .flexslider .slides li{
+            height: 100%;
+        }
+        /*橫幅主題*/
+        #banner h1 {
+            color: rgb(102, 76, 42);
+            margin: 0;          /* 去掉上下 margin */
+            text-align: left;
+            padding-left: 80pt;
+            font-size:25px;
+            background: linear-gradient(to right, #ff9900,rgb(255, 173, 157), #fff2a8);
+        }
+
+        /* 任務名稱與備註區塊 */
+        .task-info {
+            color: rgb(249, 230, 255);
+             background: radial-gradient(circle at top, #2b1055, #000);
+              padding: 20px;
+            margin-top: 0px;
+            text-align:left;
+        }
+
+        /* 任務名稱與備註標籤 */
+        .task-info label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            width:60px;
+            
+            
+        }
+
+        /* 任務名稱 input */
+        .task-info input[type="text"] {
+            width: calc(100% - 75px); 
+            padding: 5px;
+        }
+
+        /* 備註 textarea */
+        .task-info textarea {
+            width: calc(100% - 20px); 
+            height: 20%;
+            padding: 0px;
+        }
+        .task-category label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        /*討伐任務按鈕*/
+        .task-category button {
+            background-color: #bd6a8b;
+            color:rgb(249, 230, 255);
+            border: none;
+            padding: 5px 12px;
+            margin-right: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.2s; /* 加平滑過渡 */
+            font-size: 15px;
+        }
+
+        .task-category button:hover {
+            background-color: #5a2a48;
+        }
+
+        /* 被選中 */
+        .task-category button.selected {
+            background-color: #ff9900; /* 選中顏色，可以換你喜歡的 */
+            color: black;
+        }
+    
+        /*cat-area貓咪投餵區*/
+        .cat-area {
+            background: radial-gradient(circle at top, #2b1055, #000);
+            display: block;
+            justify-content: center;
+      
+            
+        }
+
+        .cat-area .container {
+           
+            /*border:1px solid red;*/
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .cat-area .cat-3block{
+            /*border:1px solid blue;*/
+            display:block;
+            text-decoration: none;
+            margin-top: 15px;/*邊界*/
+            
+        }
+        .cat-area .cat-3block img{
+            border-radius: 60px;
+            height: 200px;
+            width: 200px;
+            margin: 10px;
+        }
+        .cat-area .cat-3block h3{
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.829);/*最後數值是透明度*/
+            background-color: rgba(82, 74, 59, 0.795);
+            text-align: center;           
+        }
+        /* 胖橘能力欄 */
+        .cat-status {
+            margin-top: 8px;
+            padding: 6px;
+            background-color: rgb(216, 201, 149);
+            color: rgb(39, 27, 17);
+            font-weight:bold;
+            font-size: 16px;
+            border-radius: 6px;/*圓角*/
+            text-align: left;/*文字靠左*/
+            margin: 15px;
+        }
+        /*contact相關資訊，container代表容器*/
+        .contact {
+            background: radial-gradient(circle at top, #2b1055, #000);
+
+            display: flex;
+            justify-content: center;
+             
+        }
+        .contact .container{
+            display: block;
+        }
+
+        .contact .container .infos{
+            display:flex;
+            margin-top: 30px; 
+        }
+        /*相關資訊*/
+        .contact .container .infos .left{
+            display:block;
+            text-align: left;
+            margin-right: 30px;
+            margin-bottom: 30px;
+        }
+        /*主文字*/
+        .contact .container .infos .left b{
+            display:block;
+            text-align: left;
+            margin-top: 10px;
+            text-decoration: bold;
+            color: rgb(173, 154, 145);
+            font-size: 18px;
+            line-height: 18px;
+        }
+        /*副文字*/
+        .contact .container .infos .left span{
+            display:block;
+            text-align: left;
+            margin-top: 10px;
+            color: rgb(194, 216, 215);
+            font-size: 16px;
+            padding-left: 27px;
+        }
+        .contact .container .infos .right{
+            height: 200px;               
+        }
+        .contact .container .infos .right iframe{
+            width: 100%;
+            height: 100%;
+        }
+        /*footer尾端的防盜*/
+        .footer{
+            color: rgb(155, 145, 137);
+            display: flex;
+            justify-content: center;
+            background-color: rgb(25,26,30);
+            padding: 30px 0;
+        }
+
+
+        .cat-status div {
+            margin-bottom: 4px;
+        }
+        /*佈告欄*/
+        .task{
+            background-color: #6e1919;
+
+            padding: 10px;
+        }
+        .task-tabs {
+            
+            display: flex;
+            flex-direction: column; /* 垂直排列 */
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 150px; /* 左側寬度，可調整 */
+        }
+
+        .task-tabs li {
+            
+            padding: 8px 15px;
+            margin-bottom: 5px; /* 垂直間距 */
+            cursor: pointer;
+            background-color: #2c1344;
+            color: white;
+            border-radius: 4px;
+            transition: 0.2s;
+            text-align: left; /* 文字靠左 */
+        }
+
+        .task-tabs li.active {
+            background-color: #b361cd;
+            color: black;
+        }
+
+
+        .task-tabs li {
+            
+            padding: 8px 15px;
+            margin-right: 5px;
+            cursor: pointer;
+            background-color: #2c1344;
+            color: white;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+
+        .task-tabs li.active {
+            background-color: #b361cd;
+            color: black;
+        }
+
+        .tab-content {
+            
+            display: none; /* 先隱藏全部 */
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tab-content.active {
+            display: block; /* 顯示被選中的列表 */
+        }
+        .task {
+            
+            display: flex;
+        }
+
+        .task-lists {
+            margin-left: 20px; /* 左側分類和右側列表的間距 */
+            flex-grow: 1;
+            background-color: rgb(239, 236, 213);
+        }
+
+    </style>
+    </head>
+    <body>
+        <div class="top">
+            <div class="container">
+                <div class="logo">
+                  <img src="logo.PNG">
+                    　Spray Paint Task
+                </div>
+                <div class="top-nav">
+                  <a href=>帳號選項</a>
+
+                </div>
+              </div>
+        </div>
+        <div class="nav">   
+            <ul>
+                <li  class="dropdown"><a href="#bulletin">任務區</a>
+                    <div class="dropdown-content">
+                        <a href="#bulletin">任務佈告欄　　✭</a>
+                        <a href="#banner">新增任務　　✭</a>
+                        <a href="#cat-area">貓咪數值區　　✭</a>
+
+                    </div>                       
+                </li>
+                <li  class="dropdown"><a href="#flexslider">圖片投放區</a>
+                    <div class="dropdown-content">
+                        <a href="#flexslider">圖片投放區　　✭</a>
+
+                    </div>                       
+                </li>
+                <li  class="dropdown"><a href="#cat-area">貓咪投餵區</a><!--href可以跳轉到需要的div區塊-->
+                    <div class="dropdown-content">
+                        <a href="#cat-area">貓咪數值區　　✭</a>
+                        <a href="#cat-area">投餵貓糧　　✭</a>
+                        <a href="#cat-area">投餵罐頭　　✭</a>
+                    </div>                       
+                </li>
+
+                <li><a href="#about">相關資訊</a></li>
+            </ul>
+        </div>
+        
+
+            <div class="bulletin" id="bulletin" >
+                <div class="banner" id="banner" >
+                <h1>任務布告欄</h1>
+                </div>
+                <div class="task" >
+                        <ul class="task-tabs">
+                        <li data-tab="tab1" class="active">討伐任務</li>
+                        <li data-tab="tab2">每日任務</li>
+                        <li data-tab="tab3">限時任務</li>
+                    </ul>
+
+                    <div class="task-lists">
+                        <ul id="tab1" class="tab-content active">
+                            <li>討伐：網頁設計期末作業</li>
+                            <li>討伐：Java作業</li>
+                        </ul>
+                        <ul id="tab2" class="tab-content">
+                            <li>每日：抄筆記</li>
+                            <li>每日：晨間跑步</li>
+                        </ul>
+                        <ul id="tab3" class="tab-content">
+                            <li>限時：數學測驗</li>
+                            <li>限時：Python小專案</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="new-text">
+            <div class="banner" id="banner">
+                <h1>新增任務</h1>
+            </div>
+
+            <!-- 新增任務的內容物 -->
+            <div class="task-info">
+                
+
+                <div class="task-category" style="margin-bottom:15px;">
+                    <label for="task-name">類別選項：</label>
+                    <button type="button">討伐任務</button>
+                    <button type="button">每日任務</button>
+                    <button type="button">限時任務</button>
+                </div>
+                <div style="margin-bottom:15px;">
+                    <label for="task-name">名稱：</label>
+                    <input type="text" id="task-name" placeholder="新增任務名稱">
+                </div>
+                <label for="task-name">備註：</label>
+                <div>
+                    <textarea id="task-note" placeholder="請輸入任務備註"></textarea>
+                </div>
+                <div style="text-align: right;padding-right: 20px;"><button type="button">~~新增任務~~</button><button type="button">xx刪除任務xx</button></div>
+            
+            </div>
+        </div>
+        <div class="banner" id="banner" >
+            <h1>圖片輪播區</h1>
+        </div>
+        <div class="flexslider-area">
+
+            <div class="flexslider" id="flexslider"><!--圖片輪播區-->
+                <ul class="slides">
+                    <li>
+                        <img src="https://truth.bahamut.com.tw/s01/202307/2acc90e1909a3ad5a5bd0c4a59a6f571.JPG">
+                    </li>
+                    <li>
+                        <img src="1.jpg">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        
+        <div class="cat-area" id="cat-area"><!--貓咪投餵區-->
+            <div class="banner" id="banner">
+            
+                <h1>貓咪投餵區</h1>
+            </div>
+            <div class="container">
+                <a class="cat-3block">
+                    <img src="https://truth.bahamut.com.tw/s01/202408/30a7a4f5fee3ceebaf27d885aed16256.JPG" />
+                    <h3>胖橘</h3>
+
+                    <div class="cat-status">
+                        <div>稱號：貓奴任務初心者</div>
+                        <div>等級：5</div>
+                        <div>任務經驗值：120 / 300</div>
+                        <div>牙齒清潔度：0</div>
+                        <div>幸福度：0</div>
+                    </div>
+                </a>
+                <a class="cat-3block" >
+                    <img src="https://bpic.588ku.com/element_origin_min_pic/23/04/24/8ad17f242ed388f34cebaef37b9a133e.jpg" />
+                    <h3>貓糧</h3>
+                    <div class="cat-status">
+                        <div>牙齒清潔度+1</div>
+                        <div>.</div>
+                        <div>.</div>
+                        <div>.</div>
+                        <div>.</div>
+                    </div>
+                </a>
+                <a class="cat-3block">
+                    <img src="https://i6.momoshop.com.tw/1765704309/goodsimg/TP000/0128/0000/160/spec/TP00001280000160_01_002_R.jpg" />
+                    <h3>罐頭</h3>
+                    <div class="cat-status">
+                        <div>貓咪幸福度+1</div>
+                        <div>.</div>
+                        <div>.</div>
+                        <div>.</div>
+                        <div>.</div>
+                    </div>
+                </a>        
+            </div>
+        </div>
+
+        
+        <div class="banner" id="banner">
+            <h1>相關資訊</h1>
+        </div>
+        <div class="contact" id="about">
+            <div class="container">
+                
+                <div class="infos">
+                    <div class="left">
+                        <b>貓糧時供應商：魚x魚</b>
+                        <span>302台灣新竹縣竹北市博愛街119號</span>
+                        <b>投播圖片來源：</b>
+                        <span>古諾西亞遊戲、貓咪迷因</span>
+                        <b>網站製作者：</b>
+                        <span>B14092101 古莉琪</span>
+                    </div>
+                    <div class="right">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17223.10494166307!2d120.99197040522913!3d24.839527604959457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346836916763d7c9%3A0xe71886edc58b1fc!2z6a2a5Lit6a2a6LKT54uX5rC05peP5aSn6LOj5aC0IOerueWMl-W6lw!5e0!3m2!1szh-TW!2sus!4v1766863888513!5m2!1szh-TW!2sus" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            &copy;Copyright 2022 Department of Information Management, MUST. All rights reserved. 維護者 Tony SHHuang
+        </div>
+     </body>
+</html>
